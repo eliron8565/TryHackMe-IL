@@ -1,79 +1,12 @@
-const paths=[
-{icon:'01',title:'יסודות הסייבר',desc:'מחשבים, אינטרנט, אבטחת מידע וחשיבה של תוקף ומגן.',rooms:5,level:'מתחילים'},
-{icon:'LX',title:'Linux למתחילים',desc:'פקודות, קבצים, הרשאות, תהליכים ועבודה נכונה בטרמינל.',rooms:4,level:'מתחילים'},
-{icon:'NET',title:'רשתות',desc:'IP, DNS, פורטים, TCP/UDP, ניתוב וכלי אבחון בסיסיים.',rooms:4,level:'קל–בינוני'},
-{icon:'WEB',title:'Web Security',desc:'איך אתרי אינטרנט עובדים ואיך מזהים חולשות בסביבה מבוקרת.',rooms:4,level:'בינוני'},
-{icon:'BLU',title:'Blue Team',desc:'לוגים, אירועים, זיהוי פעילות חריגה ותגובה ראשונית.',rooms:4,level:'בינוני'},
-{icon:'CTF',title:'CTF ישראלי',desc:'אתגרי חשיבה וחקירה בסביבה בטוחה עם דגלים וניקוד.',rooms:3,level:'מתקדם'}];
-const rooms=[
-{id:'linux-101',title:'Linux 101',topic:'Linux',difficulty:'קל',xp:120,time:'25 דק׳',desc:'למד ניווט, קבצים ופקודות בסיסיות בטרמינל.'},
-{id:'network-basics',title:'יסודות הרשת',topic:'רשתות',difficulty:'קל',xp:140,time:'30 דק׳',desc:'הכר כתובות IP, פורטים ופרוטוקולים נפוצים.'},
-{id:'web-basics',title:'איך ה־Web עובד',topic:'Web',difficulty:'קל',xp:130,time:'25 דק׳',desc:'HTTP, בקשות, תגובות, Cookies ודפדפן.'},
-{id:'logs-first',title:'היכרות עם לוגים',topic:'Blue Team',difficulty:'קל',xp:150,time:'30 דק׳',desc:'למד לקרוא אירועים ולזהות סימנים חריגים.'},
-{id:'linux-permissions',title:'הרשאות Linux',topic:'Linux',difficulty:'בינוני',xp:200,time:'40 דק׳',desc:'Users, Groups, chmod ו־ownership דרך תרגול.'},
-{id:'dns-detective',title:'בלש DNS',topic:'רשתות',difficulty:'בינוני',xp:220,time:'45 דק׳',desc:'פתור תעלומה באמצעות רשומות DNS וניתוח מידע.'},
-{id:'http-lab',title:'מעבדת HTTP',topic:'Web',difficulty:'בינוני',xp:240,time:'50 דק׳',desc:'חקור בקשות ותגובות בתוך אפליקציית תרגול.'},
-{id:'soc-alert',title:'התראת SOC',topic:'Blue Team',difficulty:'בינוני',xp:260,time:'50 דק׳',desc:'מיין אירועים וקבע אילו התראות דורשות בדיקה.'},
-{id:'ctf-kotel',title:'CTF: הכותל הדיגיטלי',topic:'CTF',difficulty:'מתקדם',xp:400,time:'75 דק׳',desc:'אתגר חקירה רב־שלבי עם רמזים ודגל סופי.'}];
+const paths=[{icon:'01',title:'יסודות הסייבר',desc:'מחשבים, אינטרנט, אבטחת מידע וחשיבה של תוקף ומגן.',rooms:5,level:'מתחילים'},{icon:'LX',title:'Linux למתחילים',desc:'פקודות, קבצים, הרשאות, תהליכים ועבודה נכונה בטרמינל.',rooms:4,level:'מתחילים'},{icon:'NET',title:'רשתות',desc:'IP, DNS, פורטים, TCP/UDP, ניתוב וכלי אבחון בסיסיים.',rooms:4,level:'קל–בינוני'},{icon:'WEB',title:'Web Security',desc:'איך אתרי אינטרנט עובדים ואיך מזהים חולשות בסביבה מבוקרת.',rooms:4,level:'בינוני'},{icon:'BLU',title:'Blue Team',desc:'לוגים, אירועים, זיהוי פעילות חריגה ותגובה ראשונית.',rooms:4,level:'בינוני'},{icon:'CTF',title:'CTF ישראלי',desc:'אתגרי חשיבה וחקירה בסביבה בטוחה עם דגלים וניקוד.',rooms:3,level:'מתקדם'}];
+const rooms=[{id:'linux-101',title:'Linux 101',topic:'Linux',difficulty:'קל',xp:120,time:'25 דק׳',desc:'למד ניווט, קבצים ופקודות בסיסיות בטרמינל.'},{id:'network-basics',title:'יסודות הרשת',topic:'רשתות',difficulty:'קל',xp:140,time:'30 דק׳',desc:'הכר כתובות IP, פורטים ופרוטוקולים נפוצים.'},{id:'web-basics',title:'איך ה־Web עובד',topic:'Web',difficulty:'קל',xp:130,time:'25 דק׳',desc:'HTTP, בקשות, תגובות, Cookies ודפדפן.'},{id:'logs-first',title:'היכרות עם לוגים',topic:'Blue Team',difficulty:'קל',xp:150,time:'30 דק׳',desc:'למד לקרוא אירועים ולזהות סימנים חריגים.'},{id:'linux-permissions',title:'הרשאות Linux',topic:'Linux',difficulty:'בינוני',xp:200,time:'40 דק׳',desc:'Users, Groups, chmod ו־ownership דרך תרגול.'},{id:'dns-detective',title:'בלש DNS',topic:'רשתות',difficulty:'בינוני',xp:220,time:'45 דק׳',desc:'פתור תעלומה באמצעות רשומות DNS וניתוח מידע.'},{id:'http-lab',title:'מעבדת HTTP',topic:'Web',difficulty:'בינוני',xp:240,time:'50 דק׳',desc:'חקור בקשות ותגובות בתוך אפליקציית תרגול.'},{id:'soc-alert',title:'התראת SOC',topic:'Blue Team',difficulty:'בינוני',xp:260,time:'50 דק׳',desc:'מיין אירועים וקבע אילו התראות דורשות בדיקה.'},{id:'ctf-kotel',title:'CTF: הכותל הדיגיטלי',topic:'CTF',difficulty:'מתקדם',xp:400,time:'75 דק׳',desc:'אתגר חקירה רב־שלבי עם רמזים ודגל סופי.'}];
 const leaders=[['CyberNoa',4820,17],['RootIL',4510,16],['PacketGuy',3980,14],['BlueFox',3550,13],['N3gev',3120,12]];
-const state=JSON.parse(localStorage.getItem('thmil-progress')||'{"xp":0,"completed":[]}');
-const save=()=>localStorage.setItem('thmil-progress',JSON.stringify(state));
-const level=()=>Math.max(1,Math.floor(state.xp/500)+1);
-function updateProgress(){
- document.querySelector('#heroXp').textContent=state.xp;
- document.querySelector('#headerLevel').textContent=`Lv. ${level()}`;
- document.querySelector('#profileXp').textContent=state.xp;
- document.querySelector('#profileLevel').textContent=level();
- document.querySelector('#profileRooms').textContent=state.completed.length;
- document.querySelector('#heroBar').style.width=`${Math.min(100,(state.xp%500)/5)}%`;
-}
-function renderPaths(){
- document.querySelector('#pathGrid').innerHTML=paths.map(p=>`<article class="card"><div class="card-icon">${p.icon}</div><h3>${p.title}</h3><p>${p.desc}</p><div class="meta"><span class="tag">${p.level}</span><span class="tag">${p.rooms} חדרים</span></div><div class="card-bottom"><span>מסלול לימוד</span><a class="start-btn" href="#rooms">פתח מסלול ←</a></div></article>`).join('');
-}
+const state=JSON.parse(localStorage.getItem('thmil-progress')||'{"xp":0,"completed":[]}');state.completed=state.completed||[];const level=()=>Math.max(1,Math.floor(state.xp/500)+1);
+function updateProgress(){document.querySelector('#heroXp').textContent=state.xp;document.querySelector('#headerLevel').textContent=`Lv. ${level()}`;document.querySelector('#profileXp').textContent=state.xp;document.querySelector('#profileLevel').textContent=level();document.querySelector('#profileRooms').textContent=state.completed.length;document.querySelector('#heroBar').style.width=`${Math.min(100,(state.xp%500)/5)}%`}
+function renderPaths(){document.querySelector('#pathGrid').innerHTML=paths.map(p=>`<article class="card"><div class="card-icon">${p.icon}</div><h3>${p.title}</h3><p>${p.desc}</p><div class="meta"><span class="tag">${p.level}</span><span class="tag">${p.rooms} חדרים</span></div><div class="card-bottom"><span>מסלול לימוד</span><a class="start-btn" href="#rooms">פתח מסלול ←</a></div></article>`).join('')}
 function difficultyClass(d){return d==='קל'?'easy':d==='בינוני'?'medium':'hard'}
-function renderRooms(){
- const q=document.querySelector('#searchInput').value.trim().toLowerCase();
- const d=document.querySelector('#difficultyFilter').value;
- const filtered=rooms.filter(r=>(d==='all'||r.difficulty===d)&&(`${r.title} ${r.topic} ${r.desc}`.toLowerCase().includes(q)));
- document.querySelector('#roomGrid').innerHTML=filtered.length?filtered.map(r=>{
-  const done=state.completed.includes(r.id);
-  return `<article class="card"><div class="card-icon">${r.topic.slice(0,3).toUpperCase()}</div><h3>${r.title}</h3><p>${r.desc}</p><div class="meta"><span class="tag ${difficultyClass(r.difficulty)}">${r.difficulty}</span><span class="tag">${r.topic}</span></div><div class="card-bottom"><span>${r.time} · ${r.xp} XP</span><button class="start-btn room-btn" data-room="${r.id}" ${done?'disabled':''}>${done?'הושלם ✓':'סיים חדר'}</button></div></article>`}).join(''):'<p style="color:#8fa0b4">לא נמצאו חדרים שמתאימים לחיפוש.</p>';
- document.querySelectorAll('.room-btn').forEach(btn=>btn.addEventListener('click',()=>completeRoom(btn.dataset.room)));
-}
-function completeRoom(id){
- const room=rooms.find(r=>r.id===id); if(!room||state.completed.includes(id))return;
- state.completed.push(id);state.xp+=room.xp;save();updateProgress();renderRooms();
- alert(`כל הכבוד! השלמת את ${room.title} וקיבלת ${room.xp} XP.`);
-}
-function renderLeaders(){
- document.querySelector('#leaderboardList').innerHTML=leaders.map((l,i)=>`<div class="leader-row"><span class="rank">#${i+1}</span><div class="leader-user"><span class="leader-avatar">${l[0].slice(0,2).toUpperCase()}</span><div><b>${l[0]}</b><br><small>לומד סייבר ישראלי</small></div></div><b>${l[1].toLocaleString()} XP</b><small>Level ${l[2]}</small></div>`).join('');
-}
+function renderRooms(){const q=document.querySelector('#searchInput').value.trim().toLowerCase(),d=document.querySelector('#difficultyFilter').value;const filtered=rooms.filter(r=>(d==='all'||r.difficulty===d)&&(`${r.title} ${r.topic} ${r.desc}`.toLowerCase().includes(q)));document.querySelector('#roomGrid').innerHTML=filtered.length?filtered.map(r=>{const done=state.completed.includes(r.id);return `<article class="card room-card" tabindex="0" data-room="${r.id}"><div class="card-icon">${r.topic.slice(0,3).toUpperCase()}</div><h3>${r.title}</h3><p>${r.desc}</p><div class="meta"><span class="tag ${difficultyClass(r.difficulty)}">${r.difficulty}</span><span class="tag">${r.topic}</span></div><div class="card-bottom"><span>${r.time} · ${r.xp} XP</span><a class="start-btn" href="room.html?id=${encodeURIComponent(r.id)}">${done?'פתח שוב ✓':'התחל חדר ←'}</a></div></article>`}).join(''):'<p style="color:#8fa0b4">לא נמצאו חדרים שמתאימים לחיפוש.</p>';document.querySelectorAll('.room-card').forEach(c=>{c.addEventListener('click',e=>{if(e.target.closest('a'))return;location.href=`room.html?id=${encodeURIComponent(c.dataset.room)}`});c.addEventListener('keydown',e=>{if(e.key==='Enter')location.href=`room.html?id=${encodeURIComponent(c.dataset.room)}`})})}
+function renderLeaders(){document.querySelector('#leaderboardList').innerHTML=leaders.map((l,i)=>`<div class="leader-row"><span class="rank">#${i+1}</span><div class="leader-user"><span class="leader-avatar">${l[0].slice(0,2).toUpperCase()}</span><div><b>${l[0]}</b><br><small>לומד סייבר ישראלי</small></div></div><b>${l[1].toLocaleString()} XP</b><small>Level ${l[2]}</small></div>`).join('')}
 const files={'note.txt':'רמז: לפעמים הדגל מסתתר בקובץ שלא רואים מיד. נסה ls -a','flag.txt':'THMIL{learn_practice_repeat}','.welcome':'כל הכבוד שמצאת קובץ מוסתר! נסה cat flag.txt'};
-function runCommand(raw){
- const cmd=raw.trim();
- const out=document.querySelector('#terminalOutput');
- let result='';
- if(cmd==='help') result='פקודות זמינות: help, ls, ls -a, pwd, whoami, clear, cat note.txt, cat .welcome, cat flag.txt';
- else if(cmd==='ls') result='note.txt  projects';
- else if(cmd==='ls -a'||cmd==='ls -la') result='.  ..  .welcome  flag.txt  note.txt  projects';
- else if(cmd==='pwd') result='/home/student';
- else if(cmd==='whoami') result='student';
- else if(cmd==='clear'){out.innerHTML='';return;}
- else if(cmd.startsWith('cat ')){const f=cmd.slice(4).trim();result=files[f]??`cat: ${f}: No such file`;
-  if(f==='flag.txt'&&!state.completed.includes('safe-shell')){state.completed.push('safe-shell');state.xp+=120;save();updateProgress();result+='\n\n✓ משימה הושלמה! +120 XP';}}
- else if(cmd==='') return;
- else result=`${cmd}: command not found. נסה help`;
- out.innerHTML+=`<span style="color:#22e58a">student@lab:~$</span> ${escapeHtml(cmd)}\n${escapeHtml(result)}\n`;
- out.scrollTop=out.scrollHeight;
-}
-function escapeHtml(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[c]))}
-document.querySelector('#searchInput').addEventListener('input',renderRooms);
-document.querySelector('#difficultyFilter').addEventListener('change',renderRooms);
-document.querySelector('#terminalInput').addEventListener('keydown',e=>{if(e.key==='Enter'){runCommand(e.target.value);e.target.value=''}});
-document.querySelector('#menuBtn').addEventListener('click',()=>document.querySelector('#nav').classList.toggle('open'));
-document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>document.querySelector('#nav').classList.remove('open')));
-const dialog=document.querySelector('#profileDialog');
-document.querySelector('#profileBtn').addEventListener('click',()=>dialog.showModal());
-document.querySelector('#closeProfile').addEventListener('click',()=>dialog.close());
-document.querySelector('#resetProgress').addEventListener('click',()=>{if(confirm('לאפס את כל ה־XP והחדרים שהושלמו?')){state.xp=0;state.completed=[];save();updateProgress();renderRooms();dialog.close()}});
-renderPaths();renderRooms();renderLeaders();updateProgress();
+function escapeHtml(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[c]))}function runCommand(raw){const cmd=raw.trim(),out=document.querySelector('#terminalOutput');let result='';if(cmd==='help')result='פקודות זמינות: help, ls, ls -a, pwd, whoami, clear, cat note.txt, cat .welcome, cat flag.txt';else if(cmd==='ls')result='note.txt  projects';else if(cmd==='ls -a'||cmd==='ls -la')result='.  ..  .welcome  flag.txt  note.txt  projects';else if(cmd==='pwd')result='/home/student';else if(cmd==='whoami')result='student';else if(cmd==='clear'){out.innerHTML='';return}else if(cmd.startsWith('cat ')){const f=cmd.slice(4).trim();result=files[f]??`cat: ${f}: No such file`}else if(cmd==='')return;else result=`${cmd}: command not found. נסה help`;out.innerHTML+=`<span style="color:#22e58a">student@lab:~$</span> ${escapeHtml(cmd)}\n${escapeHtml(result)}\n`;out.scrollTop=out.scrollHeight}
+document.querySelector('#searchInput').addEventListener('input',renderRooms);document.querySelector('#difficultyFilter').addEventListener('change',renderRooms);document.querySelector('#terminalInput').addEventListener('keydown',e=>{if(e.key==='Enter'){runCommand(e.target.value);e.target.value=''}});document.querySelector('#menuBtn').addEventListener('click',()=>document.querySelector('#nav').classList.toggle('open'));document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>document.querySelector('#nav').classList.remove('open')));const dialog=document.querySelector('#profileDialog');document.querySelector('#profileBtn').addEventListener('click',()=>dialog.showModal());document.querySelector('#closeProfile').addEventListener('click',()=>dialog.close());document.querySelector('#resetProgress').addEventListener('click',()=>{if(confirm('לאפס את כל ה־XP והחדרים שהושלמו?')){localStorage.removeItem('thmil-progress');location.reload()}});renderPaths();renderRooms();renderLeaders();updateProgress();
