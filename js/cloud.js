@@ -1,0 +1,15 @@
+(() => {
+  const SUPABASE_URL='https://ucwqjkokqfrbhlhpqmqa.supabase.co';
+  const SUPABASE_KEY='sb_publishable_Mc-jxWW14Dx9FsgtVVkYRw_Z9zzAfyy';
+  const STORAGE='thmil-progress';
+  let client=null, user=null, syncing=false;
+  const local=()=>{try{return JSON.parse(localStorage.getItem(STORAGE)||'{"xp":0,"completed":[],"tasks":{}}')}catch{return {xp:0,completed:[],tasks:{}}}};
+  const normalize=s=>({xp:Math.max(0,Number(s?.xp)||0),completed:Array.isArray(s?.completed)?s.completed:[],tasks:s?.tasks&&typeof s.tasks==='object'?s.tasks:{}});
+  function merge(a,b){a=normalize(a);b=normalize(b);const tasks={...a.tasks};for(const [room,list] of Object.entries(b.tasks)){tasks[room]=[...new Set([...(tasks[room]||[]),...(Array.isArray(list)?list:[])])]}return {xp:Math.max(a.xp,b.xp),completed:[...new Set([...a.completed,...b.completed])],tasks}}
+  async function pull(){if(!client||!user)return;const {data,error}=await client.from('thmil_progress').select('xp,completed,tasks').eq('user_id',user.id).maybeSingle();if(error){console.warn('THMIL cloud pull',error.message);return}const merged=merge(local(),data||{});localStorage.setItem(STORAGE,JSON.stringify(merged));await push(merged);window.dispatchEvent(new CustomEvent('thmil-cloud-loaded',{detail:merged}))}
+  async function push(value){if(!client||!user||syncing)return;syncing=true;const s=normalize(value||local());const {error}=await client.from('thmil_progress').upsert({user_id:user.id,xp:s.xp,completed:s.completed,tasks:s.tasks,updated_at:new Date().toISOString()},{onConflict:'user_id'});syncing=false;if(error)console.warn('THMIL cloud save',error.message)}
+  function paint(){const btn=document.querySelector('#googleAuthBtn');if(!btn)return;if(user){const name=user.user_metadata?.full_name||user.email||'משתמש';btn.textContent=`${name} · יציאה`;btn.dataset.signed='1';btn.title='ההתקדמות נשמרת בענן'}else{btn.textContent='G  התחברות עם Google';btn.dataset.signed='0';btn.title='התחבר כדי לשמור XP והתקדמות בין מכשירים'}}
+  async function sign(){if(!client)return alert('שירות ההתחברות עדיין נטען.');if(user){await client.auth.signOut();return}const redirectTo=location.origin+location.pathname+(location.search||'');const {error}=await client.auth.signInWithOAuth({provider:'google',options:{redirectTo}});if(error)alert('Google עדיין לא הוגדר ב-Supabase: '+error.message)}
+  async function init(){if(!window.supabase?.createClient)return;client=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);const {data}=await client.auth.getSession();user=data.session?.user||null;paint();if(user)await pull();client.auth.onAuthStateChange(async(_event,session)=>{user=session?.user||null;paint();if(user)await pull()});document.querySelector('#googleAuthBtn')?.addEventListener('click',sign);const original=localStorage.setItem.bind(localStorage);localStorage.setItem=function(k,v){original(k,v);if(k===STORAGE){try{push(JSON.parse(v))}catch{}}}}
+  window.THMILCloud={init,push,getUser:()=>user};init();
+})();
