@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#070b10">
+  <meta name="description" content="TryHackMe IL — פלטפורמת לימוד סייבר ישראלית בעברית עם מסלולים, חדרים ותרגול בטוח.">
+  <title>TryHackMe IL | לומדים סייבר בעברית</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="TryHackMe IL">
+      <span class="brand-mark">IL</span>
+      <span>TryHackMe <b>IL</b></span>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-label="פתיחת תפריט">☰</button>
+    <nav id="nav">
+      <a href="#paths">מסלולים</a>
+      <a href="#rooms">חדרים</a>
+      <a href="#practice">תרגול</a>
+      <a href="#leaderboard">דירוג</a>
+    </nav>
+    <button class="profile-pill" id="profileBtn"><span class="online-dot"></span> אורח · <span id="headerLevel">Lv. 1</span></button>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <span class="eyebrow">🇮🇱 CYBER LEARNING — בעברית</span>
+        <h1>לומדים סייבר.<br><span>בידיים.</span> בעברית.</h1>
+        <p>פלטפורמת תרגול ישראלית ללימוד Linux, רשתות, Web, Blue Team ו־CTF — בצורה הדרגתית ובסביבות בטוחות.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#paths">התחל ללמוד בחינם ←</a>
+          <a class="btn ghost" href="#rooms">מצא חדר ראשון</a>
+        </div>
+        <div class="trust-row">
+          <span>✓ מתחילים מאפס</span><span>✓ RTL מלא</span><span>✓ תרגול בטוח</span>
+        </div>
+      </div>
+      <div class="terminal-card">
+        <div class="terminal-head"><span></span><span></span><span></span><b>student@tryhackme-il</b></div>
+        <pre><code><i>$</i> whoami
+student
+<i>$</i> cat mission.txt
+ברוך הבא ל־TryHackMe IL 🇮🇱
+המשימה שלך: ללמוד. לתרגל. להשתפר.
+<i>$</i> <span class="cursor">_</span></code></pre>
+        <div class="xp-card"><small>התקדמות שבועית</small><b><span id="heroXp">0</span> XP</b><div class="bar"><span id="heroBar"></span></div></div>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="נתוני הפלטפורמה">
+      <div><b>24</b><span>חדרי תרגול</span></div><div><b>6</b><span>מסלולי לימוד</span></div><div><b>100%</b><span>עברית</span></div><div><b>∞</b><span>סקרנות</span></div>
+    </section>
+
+    <section class="section" id="paths">
+      <div class="section-head"><div><span class="eyebrow">LEARNING PATHS</span><h2>בחר את המסלול שלך</h2></div><p>לא יודע מאיפה להתחיל? המסלולים מסודרים לפי רמה ומתקדמים איתך שלב אחרי שלב.</p></div>
+      <div class="path-grid" id="pathGrid"></div>
+    </section>
+
+    <section class="section dark-panel" id="rooms">
+      <div class="section-head"><div><span class="eyebrow">ROOMS</span><h2>חדרי תרגול</h2></div><p>חפש לפי נושא או רמת קושי. כל החדרים כאן מיועדים לתרגול חוקי ובטוח.</p></div>
+      <div class="filters">
+        <input id="searchInput" type="search" placeholder="חיפוש: Linux, רשתות, Web..." aria-label="חיפוש חדרים">
+        <select id="difficultyFilter" aria-label="סינון לפי קושי"><option value="all">כל הרמות</option><option value="קל">קל</option><option value="בינוני">בינוני</option><option value="מתקדם">מתקדם</option></select>
+      </div>
+      <div class="room-grid" id="roomGrid"></div>
+    </section>
+
+    <section class="section" id="practice">
+      <div class="section-head"><div><span class="eyebrow">SAFE LAB</span><h2>טרמינל תרגול</h2></div><p>סימולטור מקומי בלבד — הוא לא מתחבר למכונה אמיתית ולא מריץ פקודות על המחשב שלך.</p></div>
+      <div class="lab-layout">
+        <div class="mission-card">
+          <span class="mission-badge">משימת מתחילים</span>
+          <h3>מצא את הדגל</h3>
+          <p>נסה להשתמש בפקודות <code>ls</code>, <code>pwd</code>, <code>cat note.txt</code> ו־<code>help</code>.</p>
+          <div class="mission-progress"><span>פרס</span><b>+120 XP</b></div>
+        </div>
+        <div class="fake-terminal">
+          <div id="terminalOutput">TryHackMe IL Safe Shell v1.0<br>הקלד help כדי לראות פקודות זמינות.<br><br></div>
+          <label><span>student@lab:~$</span><input id="terminalInput" autocomplete="off" spellcheck="false" autofocus></label>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark-panel" id="leaderboard">
+      <div class="section-head"><div><span class="eyebrow">ISRAEL LEADERBOARD</span><h2>טבלת מובילים</h2></div><p>דוגמה מקומית לגרסה הראשונה. בהמשך ניתן לחבר משתמשים אמיתיים ומסד נתונים.</p></div>
+      <div class="leaderboard" id="leaderboardList"></div>
+    </section>
+  </main>
+
+  <dialog id="profileDialog">
+    <button class="close" id="closeProfile">×</button>
+    <span class="avatar">IL</span>
+    <h2>הפרופיל שלי</h2>
+    <p>ההתקדמות נשמרת כרגע בדפדפן שלך.</p>
+    <div class="profile-stats"><div><b id="profileXp">0</b><span>XP</span></div><div><b id="profileLevel">1</b><span>רמה</span></div><div><b id="profileRooms">0</b><span>חדרים</span></div></div>
+    <button class="btn ghost full" id="resetProgress">איפוס התקדמות</button>
+  </dialog>
+
+  <footer><a class="brand" href="#home"><span class="brand-mark">IL</span><span>TryHackMe <b>IL</b></span></a><p>נבנה ללמידת סייבר חוקית, אתית ובטוחה.</p><small>© 2026 TryHackMe IL — פרויקט קהילתי עצמאי.</small></footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
